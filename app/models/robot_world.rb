@@ -25,4 +25,21 @@ class RobotWorld
   def self.all
     dataset.map{|robot| Robot.new(robot)}
   end
+  
+  def self.find(id)
+    robot = dataset.where(id: id)
+    Robot.new(robot.to_a.first)
+  end
+  
+  def self.update(id, data)
+    dataset.where(:id => id).update(data)
+  end
+  
+  def self.destroy(id)
+    dataset.where(:id => id).delete
+  end
+  
+  def self.delete_all
+    dataset.delete
+  end
 end
