@@ -2,9 +2,9 @@ class RobotWorld
   
   def self.database
     if ENV["ROBOT_WORLD_ENV"] == "test"
-      @database = Sequel.sqlite('db/robot_world_test.sqlite3')
+      @database ||= Sequel.sqlite('db/robot_world_test.sqlite3')
     else
-      @database = Sequal.sqlite('db/robot_world.sqlite3')
+      @database ||= Sequel.sqlite('db/robot_world.sqlite3')
     end
   end
   
@@ -12,14 +12,14 @@ class RobotWorld
     database.from(:robots)
   end
   
-  def self.create(data)
-    dataset.insert(:name       => data[:name], 
-                   :city       => data[:city], 
-                   :state      => data[:state], 
-                   :avatar     => data[:avatar], 
-                   :birthdate  => data[:birthdate], 
-                   :date_hired => data[:date_hired], 
-                   :department => data[:department])
+  def self.create(robot)
+    dataset.insert(:name       => robot[:name], 
+                   :city       => robot[:city], 
+                   :state      => robot[:state], 
+                   :avatar     => robot[:avatar], 
+                   :birthdate  => robot[:birthdate], 
+                   :date_hired => robot[:date_hired], 
+                   :department => robot[:department])
   end
   
   def self.all

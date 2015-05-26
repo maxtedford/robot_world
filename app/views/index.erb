@@ -7,5 +7,10 @@
   <h3>
     <%= robot %>
   </h3>
+  <a href="/robots/<%= robot.id %>/edit">Edit</a>
+  <form action="/robots/<%= robot.id %>" method="post"
+    <input type="hidden" value="delete" name="_method">
+    <input type="submit" value="delete">
+  </form>
 <% end %>
 </body>
